@@ -1,0 +1,38 @@
+
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Order Success!";
+    var id = @Context.Session.GetString("id");
+}
+
+<style>
+    div{
+       font-family: 배달의민족 한나체 Pro; 
+    }
+</style>
+
+@if(id != null)
+{
+   <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery </h1><br>
+    <h4>Order Success!</h4><br>
+    <p>성공적으로 주문이 완료되었습니다! </p><br>
+    <br>
+    <br>
+    <input type="button" value="메인 페이지로 돌아가기" class="btn btn-primary" onclick="location.href='/Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' />
+    </div>
+}
+else 
+{
+    <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Order Site </h1><br>
+    <h3>주문을 하기 전에 먼저 로그인을 해주세요. </h3> <br>
+    <br>
+    <br>
+    <input type="button" value="로그인" class="btn btn-primary" onclick="location.href='/Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' />
+</div>
+}
+

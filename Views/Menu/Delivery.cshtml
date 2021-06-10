@@ -1,0 +1,57 @@
+@model IEnumerable<webapp_asp.Models.Menu>
+@using Microsoft.AspNetCore.Http;
+
+@{
+    ViewData["Title"] = "Welcome to Main Page";
+    var id = @Context.Session.GetString("id");
+}
+
+<style>
+    div{
+       font-family: 배달의민족 한나체 Pro; 
+    }
+</style>
+
+@if(id != null)
+{
+   <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Order Site </h1><br>
+    <br>
+    <h4>주문 페이지(접속자 아이디: @id)</h4><br>
+    <table class="table">
+     <thead>
+      <tr>
+        <td>메뉴 번호</td>
+        <td>메뉴 이름</td>
+        <td>수량</td>
+        <td>가격(단위: KRW: 원)</td>
+      </tr>
+      </thead>
+    <tbody>
+    <tr>
+        @foreach (var Item in Model)
+      {
+       <td>@Html.DisplayFor(modelltem => Item.number)</td>
+       <td>@Html.DisplayFor(modelltem => Item.name)</td>
+       <td>@Html.DisplayFor(modelltem => Item.amount)</td>
+       <td>@Html.DisplayFor(modelltem => Item.price)</td>
+       <td><a asp-controller="Menu" asp-action="OrderMenu" asp-route-id="@Item.number">주문하기</a></td>
+       }
+       </tr>
+       </tbody>
+    </table>
+    </div>
+}
+else 
+{
+    <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Order Site </h1> <br>
+    <br>
+    <h3>주문을 하기 전에 먼저 로그인을 해주세요. </h3><br>
+    <br>
+    <br>
+    <p><input type="button" value="로그인" class="btn btn-primary" onclick="location.href='/Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' /></p>
+</div>
+}
+

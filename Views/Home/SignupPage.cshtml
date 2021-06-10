@@ -1,0 +1,22 @@
+@{
+    ViewData["Title"] = "Sign Up Page";
+}
+
+<style>
+    div{
+       font-family: 배달의민족 한나체 Pro; 
+    }
+</style>
+
+<div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Signup Page</h1>
+    <form asp-controller="Home" asp-action="Signup" method="POST">
+      <p> ID: <input type="text" name="id" /></p>
+      <p> Password: <input type="password" name="password" /></p>
+      <p> Password Confirmed: <input type="password" name="CPassword" /></p>
+      <p> Your Name: <input type="text" name="yourname" /></p>
+      <p> Phonenumber: <input type="text" name="phonenumber" /> </p>
+      <p> Address: <input type="text" name="address" /> </p>
+      <input type="submit" value="회원가입" class="btn btn-primary" /></p>
+    </form>
+</div>

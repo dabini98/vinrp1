@@ -1,0 +1,40 @@
+@model IEnumerable<webapp_asp.Models.Menu>
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Add Menu Page";
+    var id = @Context.Session.GetString("id");
+}
+<style>
+    div{
+       font-family: 배달의민족 한나체 Pro; 
+    }
+</style>
+
+@if(id == "admin")
+{
+   <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Add Menu Page </h1> <br>
+    <h4>메뉴 추가</h4> <br>
+    <form asp-action="AddMenu">
+       <p>메뉴 번호: <input type="text" name="number" /> </p>
+       <p>메뉴 이름: <input type="text" name="name" /> </p>
+       <p>메뉴 수량: <input type="text" name="amount" /> </p>
+       <p>가격: <input type="text" name="price" /> </p>
+      <input type="submit" class="btn btn-primary" value="메뉴 추가" />
+    </form>
+    <input type="button" class="btn btn-primary" value="뒤로가기" onclick="history.go(-1);" />
+</div>
+}
+else 
+{
+    <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Main Site </h1> <br>
+    <br>
+    <h3>관리자 모드는 관리자 전용임. </h3><br>
+    <br>
+    <br>
+    <p><input type="button" value="로그인" class="btn btn-primary" onclick="location.href='/Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' /></p>
+</div>
+}
+

@@ -1,0 +1,46 @@
+@model webapp_asp.Models.Menu
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "Administrator Mode";
+    var id = @Context.Session.GetString("id");
+    var sales = @Context.Session.GetInt32("totalsales");
+}
+<style>
+    div{
+       font-family: 배달의민족 한나체 Pro; 
+    }
+</style>
+
+@if(id == "admin")
+{
+   <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Admin Page </h1> <br>
+    <h4>매출 계산</h4><br>
+    <h6>여기서 담당하는 것은 하루 매출 계산을 담당합니다.(메뉴 하나마다) </h6> <br>
+    <form asp-controller="Menu" asp-action="CaluSales2">
+    <input type="hidden" asp-for="number" />
+     <p>메뉴 번호: <input type="text" name="number" value="@Html.DisplayFor(model => model.number)" readOnly /> </p>
+     <p>메뉴 이름: <input type="text" name="name" value="@Html.DisplayFor(model => model.name)" readOnly /> </p>
+     <p>메뉴 수량: <input type="text" name="amount" value="@Html.DisplayFor(model => model.amount)" readOnly /></p>
+     <p>메뉴 가격: <input type="text" name="price" value="@Html.DisplayFor(model => model.price)" readOnly /> </p>
+     <p>팔린 양: <input type="text" name="sales" value="@Html.DisplayFor(model => model.sales)" readOnly /></p>
+     @if(sales == null) { <p> 하루 매출을 계산해주세요. </p>}
+     else { <p>하루 매출: @sales </p> }
+     <input type="submit" value="하루 매출 계산하기" class="btn btn-primary" />
+     <input type="button" value="메인 화면으로 돌아가기" class="btn btn-primary" onclick="location.href='/Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' />
+    </form>
+  </div>
+}
+else 
+{
+    <div class="text-center">
+    <h1 class="display-4">Online Chicken Delivery Main Site </h1> <br>
+    <h3>관리자 모드는 관리자 전용임. </h3> <br>
+    <br>
+    <br>
+    <input type="button" value="로그인" class="btn btn-primary" onclick="location.href='../Home/Index'" />
+    <input type="button" value="뒤로가기" class="btn btn-primary" onclick='history.go(-1);' />
+</div>
+}
+
